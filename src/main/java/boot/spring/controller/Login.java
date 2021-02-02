@@ -42,8 +42,7 @@ public class Login {
 	    if (Objects.isNull(httpSession.getAttribute("uid"))){
             Staff realpwd=loginservice.getpwdbyname(username);
             if((realpwd!=null&&pwd.equals(realpwd.getPassword()) && loginRedisTemplateService.getUserid(realpwd.getStaff_id()))) {
-                httpSession.setAttribute("uid", realpwd.getStaff_id());
-                loginRedisTemplateService.setUserid(realpwd.getStaff_id());
+                   loginRedisTemplateService.setUserid(realpwd.getStaff_id());
                 return "chatroom";
             }
         } else {
@@ -56,7 +55,7 @@ public class Login {
 	public String login(){
 		return "login";
 	}
-	
+
 	@RequestMapping("/logout")
 	public String logout(HttpSession httpSession){
 	    if (Objects.nonNull(httpSession.getAttribute("uid"))){
