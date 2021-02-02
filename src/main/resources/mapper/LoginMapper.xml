@@ -12,7 +12,7 @@
     <select id="getpwdbyname" parameterType="String"  resultMap="staffMap">
     	select * from staff where binary username=#{name}
     </select>
-    <select id="getnamebyid" parameterType="long"  resultMap="staffMap">
+    <select id="getnamebyid" parameterType="integer"  resultMap="staffMap">
     	select * from staff where staff_id=#{id}
     </select>
     

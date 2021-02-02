@@ -1,6 +1,13 @@
 package boot.spring.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+
+import boot.spring.po.Staff;
+import boot.spring.service.LoginRedisTemplateService;
+import com.mysql.cj.log.Log;
+import jdk.nashorn.internal.runtime.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,25 +19,37 @@ import boot.spring.po.MSG;
 import boot.spring.po.User;
 import boot.spring.service.LoginService;
 
+import java.io.Console;
+import java.util.Objects;
 
 
+@Slf4j
 @Controller
 public class Login {
 	@Autowired
 	LoginService loginservice;
-	
+
+    @Autowired
+    private LoginRedisTemplateService loginRedisTemplateService;
+
+	//登录前校验是否重复登录
 	@RequestMapping("/loginvalidate")
 	public String loginvalidate(@RequestParam("username") String username,@RequestParam("password") String pwd,HttpSession httpSession){
-		if(username==null)
-			return "login";
-		String realpwd=loginservice.getpwdbyname(username);
-		if(realpwd!=null&&pwd.equals(realpwd))
-		{
-			long uid=loginservice.getUidbyname(username);
-			httpSession.setAttribute("uid", uid);
-			return "chatroom";
-		}else
-			return "fail";
+        System.out.println("httpSession"+httpSession.getAttribute("uid"));
+        if(username == null){
+            return "login";
+        }
+	    if (Objects.isNull(httpSession.getAttribute("uid"))){
+            Staff realpwd=loginservice.getpwdbyname(username);
+            if((realpwd!=null&&pwd.equals(realpwd.getPassword()) && loginRedisTemplateService.getUserid(realpwd.getStaff_id()))) {
+                httpSession.setAttribute("uid", realpwd.getStaff_id());
+                loginRedisTemplateService.setUserid(realpwd.getStaff_id());
+                return "chatroom";
+            }
+        } else {
+            return "chatroom";
+        }
+	       return "fail";
 	}
 	
 	@RequestMapping("/login")
@@ -40,14 +59,21 @@ public class Login {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession httpSession){
-		return "login";
+	    if (Objects.nonNull(httpSession.getAttribute("uid"))){
+            Integer uid = (Integer) httpSession.getAttribute("uid");
+            log.info("这里是uid", uid);
+            loginRedisTemplateService.delUserid(uid);
+        }
+	    return "login";
 	}
 	
 	@RequestMapping(value="/currentuser",method = RequestMethod.GET)
 	@ResponseBody
 	public User currentuser(HttpSession httpSession){
-		Long uid = (Long)httpSession.getAttribute("uid");
+        Integer uid = (Integer)httpSession.getAttribute("uid");
 		String name = loginservice.getnamebyid(uid);
 		return new User(uid, name);
 	}
+
+
   }

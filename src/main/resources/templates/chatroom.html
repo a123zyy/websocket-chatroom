@@ -121,6 +121,7 @@ Date.prototype.format = function(fmt) {
 	        };
 	        
 	        $.post("/onlineusers?currentuser="+user,function(data){
+	            console.log(data,"data")
     		for(var i=0;i<data.length;i++)
     			$("#users").append('<a href="#" onclick="talk(this)" class="list-group-item">'+data[i]+'</a>');
     		});

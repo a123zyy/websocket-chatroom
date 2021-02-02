@@ -2,7 +2,7 @@ package boot.spring.po;
 
 
 public class Staff {
-	private byte staff_id;
+	private int staff_id;
 	private String first_name;
 	private String last_name;
 	private short address_id;
@@ -15,10 +15,10 @@ public class Staff {
 	public String getLast_update() {
 		return last_update;
 	}
-	public byte getStaff_id() {
+	public int getStaff_id() {
 		return staff_id;
 	}
-	public void setStaff_id(byte staff_id) {
+	public void setStaff_id(int staff_id) {
 		this.staff_id = staff_id;
 	}
 	public void setLast_update(String last_update) {

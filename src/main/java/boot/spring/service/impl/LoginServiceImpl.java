@@ -17,29 +17,22 @@ import boot.spring.service.LoginService;
 public class LoginServiceImpl implements LoginService{
 	@Autowired
 	LoginMapper loginmapper;
-	
-	public String getpwdbyname(String name) {
+
+    @Override
+	public Staff getpwdbyname(String name) {
 		Staff s=loginmapper.getpwdbyname(name);
-		if(s!=null)
-		return s.getPassword();
-		else
-		return null;
+        return s!=null?s:null;
 	}
-	
-	public Long getUidbyname(String name) {
+
+    @Override
+	public Integer getUidbyname(String name) {
 		Staff s=loginmapper.getpwdbyname(name);
-		if(s!=null)
-			return (long) s.getStaff_id();
-			else
-			return null;
+        return s!=null? s.getStaff_id():null;
 	}
-	
-	public String getnamebyid(long id) {
+	@Override
+	public String getnamebyid(int id) {
 		Staff s=loginmapper.getnamebyid(id);
-		if(s!=null)
-			return s.getUsername();
-			else
-			return null;
+		return s!=null?s.getUsername():null;
 	}
 	
 	

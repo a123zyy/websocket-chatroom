@@ -20,16 +20,16 @@ import com.alibaba.druid.pool.DruidDataSource;
 @MapperScan(value = "boot.spring.mapper",sqlSessionFactoryRef = "sqlSessionFactory")
 public class MyDataSource {
 
-    @Value("${spring.datasource.ssm.url}")
+    @Value("${spring.datasource.url}")
     private String url;
 
-    @Value("${spring.datasource.ssm.username}")
+    @Value("${spring.datasource.username}")
     private String username;
 
-    @Value("${spring.datasource.ssm.password}")
+    @Value("${spring.datasource.password}")
     private String password;
 
-    @Value("${spring.datasource.ssm.driver-class-name}")
+    @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
     @Bean

@@ -25,6 +25,7 @@ public class ChatController {
 	LoginService loginservice;
 	
 
+	//重新获取上线人数
 	@RequestMapping("/onlineusers")
 	@ResponseBody
 	public Set<String> onlineusers(@RequestParam("currentuser") String currentuser) {
@@ -34,8 +35,9 @@ public class ChatController {
 		Set<String> nameset = new HashSet<String>();
 		while (it.hasNext()) {
 			String entry = it.next();
-			if (!entry.equals(currentuser))
-				nameset.add(entry);
+			if (!entry.equals(currentuser)){
+                nameset.add(entry);
+            }
 		}
 		return nameset;
 	}
@@ -44,9 +46,9 @@ public class ChatController {
 	@RequestMapping("getuid")
 	@ResponseBody
 	public User getuid(@RequestParam("username") String username) {
-		Long a = loginservice.getUidbyname(username);
+		int staffUid = loginservice.getUidbyname(username);
 		User u = new User();
-		u.setUid(a);
+		u.setUid(staffUid);
 		return u;
 	}
 }
