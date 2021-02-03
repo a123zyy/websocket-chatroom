@@ -13,6 +13,7 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
@@ -22,7 +23,15 @@ import boot.spring.po.Message;
 @ServerEndpoint("/webSocket/{username}")
 @Component
 public class WebSocketServer {
-	 //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
+
+    private static LoginService loginService;
+
+    @Autowired
+    public void setLoginService(LoginService loginService) {
+        WebSocketServer.loginService = loginService;
+    }
+
+    //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static AtomicInteger onlineNum = new AtomicInteger();
 
     //concurrent包的线程安全Set，用来存放每个客户端对应的WebSocketServer对象。
@@ -76,6 +85,7 @@ public class WebSocketServer {
     @OnClose
     public void onClose(@PathParam(value = "username") String userName){
         sessionPools.remove(userName);
+        loginService.delRedisUid(userName);
         subOnlineCount();
         System.out.println(userName + "断开webSocket连接！当前人数为" + onlineNum);
         // 广播下线消息
