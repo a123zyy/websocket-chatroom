@@ -7,4 +7,5 @@ public interface LoginService {
     Staff getpwdbyname(String name);
 	Integer getUidbyname(String name);
 	String getnamebyid(int id);
+	void delRedisUid(String name);
 }
