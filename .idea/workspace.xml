@@ -21,6 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5ff3ffab-b88d-467a-af92-efbdea19c4f6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,33 +38,15 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>${spring.datasource.ssm.url}</find>
-      <find>发送数据</find>
-      <find>currentuser</find>
-      <find>下线了</find>
-      <find>当前人数为2</find>
-      <find>redis</find>
-      <find>Correct the classpath of your application so that it contains a single, compatible version of org.springframework.core.annotation.AnnotationUtil</find>
-      <find>AnnotationUtils</find>
-      <find>2.1.6</find>
-      <find>starter</find>
-      <find>fail</find>
-      <find>/webSocket/</find>
-      <find>byte</find>
-      <find>Long</find>
-      <find>long</find>
-      <find>onlineusers</find>
-      <find>loginvalidate</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>int</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="1280" />
+    <option name="y" value="-280" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectId" id="1nvYLYvROtoLOCJaKX19Q7ebNwX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -116,12 +99,14 @@
       <updated>1612167874402</updated>
       <workItem from="1612167875757" duration="5299000" />
       <workItem from="1612231651940" duration="21109000" />
-      <workItem from="1612271977717" duration="1869000" />
+      <workItem from="1612271977717" duration="1501000" />
+      <workItem from="1612319278465" duration="6044000" />
+      <workItem from="1612345200694" duration="1115000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -133,6 +118,55 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1878" height="416" key="GridCell.Tab.0.bottom" timestamp="1612442326759">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326759" />
+    <state width="1878" height="416" key="GridCell.Tab.0.center" timestamp="1612442326758">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326758" />
+    <state width="1878" height="416" key="GridCell.Tab.0.left" timestamp="1612442326757">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326757" />
+    <state width="1878" height="416" key="GridCell.Tab.0.right" timestamp="1612442326758">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326758" />
+    <state width="1878" height="416" key="GridCell.Tab.1.bottom" timestamp="1612442326760">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.1.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326760" />
+    <state width="1878" height="416" key="GridCell.Tab.1.center" timestamp="1612442326760">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.1.center/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326760" />
+    <state width="1878" height="416" key="GridCell.Tab.1.left" timestamp="1612442326759">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.1.left/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326759" />
+    <state width="1878" height="416" key="GridCell.Tab.1.right" timestamp="1612442326760">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="416" key="GridCell.Tab.1.right/0.0.1920.1080@0.0.1920.1080" timestamp="1612442326760" />
   </component>
   <component name="masterDetails">
     <states>
