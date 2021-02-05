@@ -8,4 +8,6 @@ public interface LoginService {
 	Integer getUidbyname(String name);
 	String getnamebyid(int id);
 	void delRedisUid(String name);
+	void setRedisUid(String name);
+
 }

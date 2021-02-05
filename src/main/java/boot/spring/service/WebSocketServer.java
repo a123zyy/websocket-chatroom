@@ -70,6 +70,8 @@ public class WebSocketServer {
     //建立连接成功调用
     @OnOpen
     public void onOpen(Session session, @PathParam(value = "username") String userName){
+        //此时校验当前登陆的用户是否已经登陆 如果已经登陆就强制退出
+        loginService.setRedisUid(userName);
         sessionPools.put(userName, session);
         addOnlineCount();
         System.out.println(userName + "加入webSocket！当前人数为" + onlineNum);
@@ -84,8 +86,8 @@ public class WebSocketServer {
     //关闭连接时调用
     @OnClose
     public void onClose(@PathParam(value = "username") String userName){
-        sessionPools.remove(userName);
         loginService.delRedisUid(userName);
+        sessionPools.remove(userName);
         subOnlineCount();
         System.out.println(userName + "断开webSocket连接！当前人数为" + onlineNum);
         // 广播下线消息

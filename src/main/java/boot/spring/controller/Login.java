@@ -35,20 +35,23 @@ public class Login {
 	//登录前校验是否重复登录
 	@RequestMapping("/loginvalidate")
 	public String loginvalidate(@RequestParam("username") String username,@RequestParam("password") String pwd,HttpSession httpSession){
-        System.out.println("httpSession"+httpSession.getAttribute("uid"));
-        if(username == null){
+        Integer uid = (Integer) httpSession.getAttribute("uid");
+        System.out.println("username"+username);
+        System.out.println("pwd"+pwd);
+        System.out.println("uid"+uid);
+        if(username == null || pwd == null){
             return "login";
         }
-	    if (Objects.isNull(httpSession.getAttribute("uid"))){
-            Staff realpwd=loginservice.getpwdbyname(username);
-            if((realpwd!=null&&pwd.equals(realpwd.getPassword()) && loginRedisTemplateService.getUserid(realpwd.getStaff_id()))) {
-                   httpSession.setAttribute("uid",realpwd.getStaff_id());
-                   loginRedisTemplateService.setUserid(realpwd.getStaff_id());
-                return "chatroom";
-            }
-        } else {
+        Staff realpwd=loginservice.getpwdbyname(username);
+
+//        && loginRedisTemplateService.getUserid(realpwd.getStaff_id())
+        loginRedisTemplateService.getUserid(realpwd.getStaff_id());
+        if((realpwd!=null&&pwd.equals(realpwd.getPassword()))) {
+               httpSession.setAttribute("uid",realpwd.getStaff_id());
+               loginRedisTemplateService.setUserid(realpwd.getStaff_id());
             return "chatroom";
         }
+
 	       return "fail";
 	}
 	
