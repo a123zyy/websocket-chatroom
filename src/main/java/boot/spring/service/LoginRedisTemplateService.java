@@ -26,6 +26,7 @@ public class LoginRedisTemplateService {
     public Boolean getUserid(int userid){
         if (Objects.nonNull(redisTemplate.opsForValue().get(LOGIN_USER_UId+userid))){
             String uid = (String) redisTemplate.opsForValue().get(LOGIN_USER_UId+userid);
+            System.out.println("redis中值是什么呢!"+uid);
             return Integer.parseInt(uid) == userid?false:true;
         }
         return true;
