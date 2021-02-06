@@ -45,11 +45,5 @@ public class LoginServiceImpl implements LoginService{
         System.out.println("当前参数已经删除"+username);
     }
 
-    @Override
-    public void setRedisUid(String name) {
-        loginRedisTemplateService.setUserid(loginmapper.getpwdbyname(name).getStaff_id());
-        System.out.println("当前参数已经存入redis"+name);
-    }
-
 
 }

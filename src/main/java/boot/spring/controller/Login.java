@@ -35,24 +35,23 @@ public class Login {
 	//登录前校验是否重复登录
 	@RequestMapping("/loginvalidate")
 	public String loginvalidate(@RequestParam("username") String username,@RequestParam("password") String pwd,HttpSession httpSession){
-        Integer uid = (Integer) httpSession.getAttribute("uid");
-        System.out.println("username"+username);
-        System.out.println("pwd"+pwd);
-        System.out.println("uid"+uid);
-        if(username == null || pwd == null){
+	    if(username == null || pwd == null){
             return "login";
         }
+        //第一次登陆redisUid sessionid null
         Staff realpwd=loginservice.getpwdbyname(username);
-
-//        && loginRedisTemplateService.getUserid(realpwd.getStaff_id())
-        loginRedisTemplateService.getUserid(realpwd.getStaff_id());
-        if((realpwd!=null&&pwd.equals(realpwd.getPassword()))) {
+         String redisUid =  loginRedisTemplateService.getUserid(realpwd.getStaff_id());
+         System.out.println("我的Uid "+realpwd.getStaff_id());
+        if((realpwd!=null&&pwd.equals(realpwd.getPassword())) && redisUid == null) {
                httpSession.setAttribute("uid",realpwd.getStaff_id());
-               loginRedisTemplateService.setUserid(realpwd.getStaff_id());
+               loginRedisTemplateService.setUserid(realpwd.getStaff_id(),httpSession.getId());
             return "chatroom";
-        }
-
-	       return "fail";
+         } else if ((realpwd!=null&&pwd.equals(realpwd.getPassword())) && redisUid.equals(realpwd.getStaff_id()+"_"+httpSession.getId())){
+             httpSession.setAttribute("uid",realpwd.getStaff_id());
+             loginRedisTemplateService.setUserid(realpwd.getStaff_id(),httpSession.getId());
+             return "chatroom";
+         }
+         return "fail";
 	}
 	
 	@RequestMapping("/login")

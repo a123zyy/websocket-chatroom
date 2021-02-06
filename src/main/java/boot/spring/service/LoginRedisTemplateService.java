@@ -18,18 +18,17 @@ public class LoginRedisTemplateService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    public Boolean setUserid(int userid){
-     redisTemplate.opsForValue().set(LOGIN_USER_UId+userid,String.valueOf(userid));
+    public Boolean setUserid(int userid,String SessionId){
+     redisTemplate.opsForValue().set(LOGIN_USER_UId+userid,userid+"_"+SessionId);
      return true;
     }
 
-    public Boolean getUserid(int userid){
+    public String getUserid(int userid){
+        String uid = null;
         if (Objects.nonNull(redisTemplate.opsForValue().get(LOGIN_USER_UId+userid))){
-            String uid = (String) redisTemplate.opsForValue().get(LOGIN_USER_UId+userid);
-            System.out.println("redis中值是什么呢!"+uid);
-            return Integer.parseInt(uid) == userid?false:true;
+            uid = (String) redisTemplate.opsForValue().get(LOGIN_USER_UId+userid);
         }
-        return true;
+        return uid;
     }
 
     public void delUserid(int userid){

@@ -71,7 +71,6 @@ public class WebSocketServer {
     @OnOpen
     public void onOpen(Session session, @PathParam(value = "username") String userName){
         //此时校验当前登陆的用户是否已经登陆 如果已经登陆就强制退出
-        loginService.setRedisUid(userName);
         sessionPools.put(userName, session);
         addOnlineCount();
         System.out.println(userName + "加入webSocket！当前人数为" + onlineNum);
